@@ -1,0 +1,4 @@
+administer bks_schedule configuration:
+  title: 'Administer bks_schedule configuration'
+  description: 'Optional description.'
+  restrict access: true

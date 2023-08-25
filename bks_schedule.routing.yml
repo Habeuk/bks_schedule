@@ -1,0 +1,16 @@
+bks_schedule.views:
+  path: "/bks-schedule/page-app"
+  defaults:
+    _title: "Application de reservation"
+    _controller: '\Drupal\bks_schedule\Controller\BksScheduleController::build'
+  requirements:
+    _permission: "access content"
+
+bks_schedule.load_app:
+  path: "/bks-schedule/api/{booking_config_type_id}"
+  defaults:
+    _title: "Application de reservation"
+    _controller: '\Drupal\bks_schedule\Controller\BksScheduleController::loadConfigSchedule'
+  requirements:
+    _permission: "access content"
+

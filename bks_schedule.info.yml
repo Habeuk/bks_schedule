@@ -1,0 +1,8 @@
+name: bks schedule
+type: module
+description: Provides additional functionality for the site.
+package: Custom
+core_version_requirement: ^9 || ^10
+dependencies:
+  - booking_system:booking_system
+  - booking_system_schedule:booking_system_schedule
