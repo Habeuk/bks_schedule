@@ -1,0 +1,8 @@
+bks_schedule_app:
+  js:
+    files/planningApp.umd.js: {}
+  css:
+    component:
+      files/style.css: {}
+  dependencies:
+    - booking_system/vuejs3 

@@ -16,6 +16,23 @@ use Drupal\lesroidelareno\lesroidelareno;
  * Returns responses for bks schedule routes.
  */
 class BksScheduleController extends ControllerBase {
+  /**
+   *
+   * @var ManageSchedule
+   */
+  protected $ManageSchedule;
+  
+  public function __construct(ManageSchedule $ManageSchedule) {
+    $this->ManageSchedule = $ManageSchedule;
+  }
+  
+  /**
+   *
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static($container->get('booking_system_schedule.manager'));
+  }
   
   /**
    * Builds the response to showing the Vue-js app.
@@ -32,13 +49,10 @@ class BksScheduleController extends ControllerBase {
       "#attributes" => [
         'id' => 'app',
         'data-url-schedule' => '/' . $urlSchedule->getInternalPath(),
-        'class' => [
-          'm-5',
-          'p-5'
-        ]
+        'class' => []
       ]
     ];
-    $build['content']['#attached']['library'][] = 'booking_system/booking_system_app2';
+    $build['content']['#attached']['library'][] = 'bks_schedule/bks_schedule_app';
     return $build;
   }
   
@@ -55,7 +69,9 @@ class BksScheduleController extends ControllerBase {
       if (!empty($datas['filtres'])) {
         // applies
       }
-      $configs = [];
+      $date_begin = "2023-08-21";
+      $date_end = "2023-08-27";
+      $configs = $this->ManageSchedule->loadCreneaux($booking_config_type_id, $date_begin, $date_end);
       return HttpResponse::response($configs);
     }
     catch (\Exception $e) {
